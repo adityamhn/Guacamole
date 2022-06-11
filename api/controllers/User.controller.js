@@ -204,7 +204,6 @@ exports.AddToCart = async (req, res, next) => {
       message: "Item not found!",
     });
   item.qty = qty;
-  zz;
   user.cart.push(item);
   await user
     .save()

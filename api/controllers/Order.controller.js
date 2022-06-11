@@ -21,7 +21,7 @@ exports.AddOrder = async (req, res, next) => {
 
   var cost = 0;
   itemPrices.forEach((item) => {
-    cost += item.price;
+    cost = cost + item.price * item.qty;
   });
 
   const newOrder = new OrderModel({
