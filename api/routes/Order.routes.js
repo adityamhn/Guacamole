@@ -10,3 +10,4 @@ const router = express.Router();
 router.post("/add-order", CheckJWT, AddOrder);
 
 router.get("/get-order-details", CheckJWT, GetOrderDetails);
+module.exports = router;

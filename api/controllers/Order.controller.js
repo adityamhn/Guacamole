@@ -38,14 +38,17 @@ exports.AddOrder = async (req, res, next) => {
           });
       });
 
-    exports.GetOrderDetails = (req, res, next) => {
-    const { _id } = res.locals;
+
+};
+
+exports.GetOrderDetails = (req, res, next) => {
+    const { _id } = res.body;
     if (!_id)
         return res.status(500).json({
         success: false,
         message: "Required values not provided!",
         });
-    return OrderModel.findOne({
+    return OrderModel.findById({
         _id,
     })
         .then((order) => {
@@ -63,4 +66,3 @@ exports.AddOrder = async (req, res, next) => {
         });
         });
     };
-};
