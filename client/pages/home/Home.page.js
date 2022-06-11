@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Image } from "react-native";
-import { Button, Colors, ProgressBar } from "react-native-paper";
+// import { Button, Colors, ProgressBar } from "react-native-paper";
 import { SafeArea } from "../../components/SafeArea.component";
 import Carousel from "react-native-snap-carousel";
 import { Dimensions } from "react-native";

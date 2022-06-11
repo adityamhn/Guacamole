@@ -125,6 +125,7 @@ const PreLoginScreen = ({ navigation }) => {
             {...flatListOptimizationProps}
           /> */}
           <Button
+            onPress={() => navigation.navigate("Login")}
             style={{
               marginTop: 35,
               width: "80%",

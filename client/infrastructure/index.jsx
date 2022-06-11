@@ -10,11 +10,14 @@ import { UserNavigator } from "./user.navigation";
 import { useSelector } from "react-redux";
 
 export const Navigation = () => {
-  const { userData } = useSelector((state) => state.auth);
+  // const { userData } = useSelector((state) => state.auth);
   console.log("here");
   return (
     <NavigationContainer>
-      {userData ? <UserNavigator /> : <PreLoginNavigator />}
+      {/* {userData ? <UserNavigator /> : */}
+
+      <PreLoginNavigator />
+      {/* } */}
     </NavigationContainer>
   );
 };

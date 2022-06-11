@@ -18,6 +18,7 @@
 //     justifyContent: 'center',
 //   },
 // });
+import { AppRegistry } from "react-native";
 
 import React from "react";
 import { useFonts } from "expo-font";
@@ -48,3 +49,5 @@ export default function App() {
     </>
   );
 }
+
+AppRegistry.registerComponent("App", () => App);

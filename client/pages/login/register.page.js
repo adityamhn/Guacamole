@@ -13,7 +13,7 @@ import {
 } from "./login.styles";
 import store from "../../app/store";
 import { LoginThunk } from "../../app/auth.slice";
-import { RadioButton } from "react-native-paper";
+// import { RadioButton } from "react-native-paper";
 import { SafeArea } from "../../components/SafeArea.component";
 import { TouchableOpacity, View } from "react-native";
 
