@@ -1,10 +1,16 @@
-import styled from 'styled-components';
-import { FlatList, Dimensions } from 'react-native';
-import { Button } from 'react-native-paper';
-import { BACKGROUND_COLOR, PRIMARY_FONT, SECONDARY_FONT } from '../../constants';
+import styled from "styled-components";
+import { FlatList, Dimensions } from "react-native";
+// import { Button } from 'react-native-paper';
+import { Button } from "react-native-ui-lib";
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+import {
+  BACKGROUND_COLOR,
+  PRIMARY_FONT,
+  SECONDARY_FONT,
+} from "../../constants";
+
+const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
 
 export const MainCarousel = styled(FlatList)`
   flex: 1;
@@ -42,7 +48,7 @@ export const SlideImage = styled.Image`
 `;
 
 export const MainPagination = styled.View`
-  justify-content: center;
+  justify-content: start;
   flex-direction: row;
 `;
 
@@ -51,28 +57,34 @@ export const PaginationDot = styled.View`
   height: 8px;
   border-radius: 4px;
   margin: 0px 8px;
-  background-color: ${({ index, i }) => (index === i ? '#184e81' : 'white')};
+  background-color: ${({ index, i }) => (index === i ? "#184e81" : "white")};
 `;
 
-export const StartedButton = styled(Button)`
-
-  color: #3577d0;
-  background-color: #1d1d1d;
-  border-radius: 50px;
-  padding: 8px 24px;
-  margin-bottom: 50px;
-`;
+// export const GeneralButton = styled(Button)`
+//   color: #3577d0;
+//   background-color: #1d1d1d;
+//   border-radius: 50px;
+//   padding: 8px 24px;
+//   margin-bottom: 50px;
+// `;
 
 export const WelcomeText = styled.Text`
-  color: #f9f9f9;
-  font-size: 24px;
-  font-family: ${SECONDARY_FONT};
-  margin-top: 80px;
+  color: #e85d04;
+  font-size: 16px;
+  font-family: ${PRIMARY_FONT};
+  margin-bottom: 56px;
+`;
+
+export const OrangeText = styled.Text`
+  color: #faa307;
 `;
 
 export const TitleText = styled.Text`
   color: #f9f9f9;
-  font-size: 80px;
-  margin-bottom: 20px;
+  font-size: 24px;
+  margin-top: 20px;
+  text-align: center
+  flex-wrap: wrap;
+  width: 80%;
   font-family: ${PRIMARY_FONT};
 `;

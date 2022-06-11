@@ -28,12 +28,18 @@ import store from "./app/store";
 import { Provider } from "react-redux";
 
 export default function App() {
-  // const [loaded] = useFonts({
-  //   BasisGrotesqueProBold: require("./fonts/BasisGrotesqueProBold.ttf"),
-  //   BasisGrotesqueProMiddle: require("./fonts/BasisGrotesqueProMedium.ttf"),
-  // });
+  // Dinosaur: require("./fonts/Dinosaur.otf"),
 
-  if (!loaded) return null;
+  const [fontsLoaded] = useFonts({
+    Dinosaur: require("./fonts/Dinosaur.otf"),
+    PoppinsRegular: require("./fonts/Poppins-Regular.ttf"),
+    PoppinsBold: require("./fonts/Poppins-Bold.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <>
       <Provider store={store}>
