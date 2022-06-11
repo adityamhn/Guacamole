@@ -23,3 +23,11 @@ jobs:
         with:
           push: true
           tags: hackerbone/jolteon:latest
+
+      - name: SSH
+        uses: appleboy/ssh-action@master
+        env:
+          USERNAME: ${{ secrets.SSH_USERNAME }}
+          HOST: ${{ secrets.SSH_HOST }}
+          KEY: ${{ secrets.SSH_KEY }}
+          SCRIPT: ./deploy.sh
