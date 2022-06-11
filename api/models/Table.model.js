@@ -12,8 +12,8 @@ const TableSchema = new mongoose.Schema({
   lastOccupancy: {
     type: Date,
     required: false,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 TableSchema.methods.GetTableData = async function () {
@@ -21,7 +21,7 @@ TableSchema.methods.GetTableData = async function () {
   return {
     u_id: table.u_id,
     status: table.status,
-    lastOccupancy: table.lastOccupancy
+    lastOccupancy: table.lastOccupancy,
   };
 };
 
