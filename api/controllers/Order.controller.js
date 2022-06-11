@@ -2,23 +2,19 @@ const UserModel = require("../models/User.model");
 const OrderModel = require("../models/Order.model");
 const RestaurantModel = require("../models/Restaurant.model");
 const jwt = require("jsonwebtoken");
+const ItemModel = require("../models/Item.model");
 
 exports.AddOrder = async (req, res, next) => {
-    const { u_id } = req.body;
+    const { u_id, r_id, items } = req.body;
 
-    if (!u_id)
+    if (!u_id || !r_id || items)
     return res.status(500).json({
       success: false,
       message: "Required values not provided!",
     });
 
-    const { r_id } = req.body;
-
-    if (!r_id)
-    return res.status(500).json({
-      success: false,
-      message: "Required values not provided!",
-    });
+    var price = 0;
+    
 
     const newOrder = new OrderModel(req.body);
 
