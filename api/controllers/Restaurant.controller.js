@@ -151,14 +151,14 @@ exports.UpdateRestaurantDetails = (req, res, next) => {
 };
 
 exports.GetRestaurantDetails = (req, res, next) => {
-  const { email } = res.locals;
-  if (!email)
+  const { _id } = res.locals;
+  if (!_id)
     return res.status(500).json({
       success: false,
       message: "Required values not provided!",
     });
-  return RestaurantModel.findOne({
-    email,
+  return RestaurantModel.findById({
+    _id,
   })
     .then((restaurant) => {
       return res.status(200).json({
