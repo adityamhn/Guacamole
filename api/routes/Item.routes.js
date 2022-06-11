@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.post("/add-item", CheckJWT, AddItem);
 
-router.post("/get-item-by-restaurant-id", CheckJWT, getItemByRestaurantId);
+router.post("/get-item-by-restaurant-id", getItemByRestaurantId);
 
 router.post("/update-item", CheckJWT, updateItem);
 

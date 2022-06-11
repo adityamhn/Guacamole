@@ -1,174 +1,169 @@
 @import "../variables";
 
 .MenuLayoutContainer {
-    background: $background;
-    min-height: 100vh;
-    padding: 0rem 1rem;
+  background: $background;
+  min-height: 100vh;
+  padding: 0rem 1rem;
 
-    .MenuHeader {
-        padding-top: 3rem;
+  .MenuHeader {
+    padding-top: 3rem;
 
-        .restName {
-            font-size: 1.6rem;
-            font-weight: bold;
+    .restName {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: $white-text;
+    }
+
+    .tableNumber {
+      color: $orange;
+      font-weight: 500;
+    }
+
+    .restAddress {
+      color: $white-text-secondary;
+      font-size: 0.9rem;
+    }
+
+    .foodTypesContainer {
+      overflow-x: auto;
+      margin-top: 1.5rem;
+
+      &::-webkit-scrollbar {
+        width: 0px;
+      }
+
+      :global {
+        .ant-segmented {
+          .ant-segmented-item {
+            margin-right: 0.5rem;
+            background: rgba(229, 229, 229, 0.15);
+            padding: 0.2rem 0.8rem;
+            border-radius: 1.2rem;
+          }
+
+          .ant-segmented-item-selected {
+            background: rgba($color: $orange, $alpha: 0.8);
             color: $white-text;
+          }
         }
+      }
+    }
+  }
 
-        .tableNumber {
-            color: $orange;
-            font-weight: 500;
-        }
+  .footer {
+    position: relative;
+    .footerButton {
+      position: fixed;
+      left: 50%;
+      bottom: 15px;
+      transform: translateX(-50%);
+      bottom: 18px;
+      width: calc(100% - 2rem);
+      box-shadow: rgba(240, 240, 241, 0.2) 0px 0px 40px 10px;
+      height: 3.2rem;
 
-        .restAddress {
-            color: $white-text-secondary;
-            font-size: 0.9rem;
-        }
+      .buttonText {
+        color: $white-text;
+      }
 
-        .foodTypesContainer {
-            overflow-x: auto;
-            margin-top: 1.5rem;
+      .arrow {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2rem;
+        color: $white-text-secondary;
+      }
+    }
+  }
 
-            &::-webkit-scrollbar {
-                width: 0px;
+  .mainMenu {
+    margin-top: 1rem;
+
+    .menuListContainer {
+      .listName {
+        color: $white-text-secondary;
+        font-weight: 500;
+      }
+
+      .list {
+        margin-top: 1rem;
+
+        .listItem {
+          display: flex;
+          margin-bottom: 2rem;
+
+          .itemImage {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 4px;
+          }
+
+          .itemDetails {
+            width: 100%;
+            margin-left: 0.7rem;
+            .itemName {
+              color: $white-text;
+            }
+
+            .itemPrice {
+              color: $orange;
+              font-weight: 500;
+              font-size: 1.1rem;
+            }
+
+            .itemPicker {
+              display: flex;
+              align-items: center;
+              justify-content: flex-end;
+              height: 1.4rem;
+
+              .iconLeft {
+                background-color: $orange;
+                border-radius: 2px 0px 0px 2px;
+                height: 100%;
+                width: 1.4rem;
+                cursor: pointer;
               }
-              
 
-            :global {
-                .ant-segmented {
-                    .ant-segmented-item {
-                        margin-right: 0.5rem;
-                        background: rgba(229, 229, 229, 0.15);
-                        padding: 0.2rem 0.8rem;
-                        border-radius: 1.2rem;
-                    }
+              .iconRight {
+                background-color: $orange;
+                border-radius: 0px 2px 2px 0px;
+                height: 100%;
+                width: 1.4rem;
+                cursor: pointer;
+              }
 
-                    .ant-segmented-item-selected {
-                        background: rgba($color: $orange, $alpha: 0.8);
-                        color: $white-text;
-                    }
-                }
+              .number {
+                // background-color: $white-text;
+                color: $orange;
+                height: inherit;
+                border-top: 1px solid $orange;
+                border-bottom: 1px solid $orange;
+                padding: 0rem 0.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
             }
 
+            .itemDescription {
+              font-size: 0.7rem;
+              color: $white-text-secondary;
+            }
+
+            .addButton {
+              height: 1.6rem;
+              font-size: 0.7rem;
+              width: fit-content;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border-radius: 20px;
+            }
+          }
         }
-       
+      }
     }
-
-    .footer {
-
-        .footerButton {
-            position: fixed;
-            bottom: 18px;
-            width:calc(100% - 2rem);
-            box-shadow: rgba(240, 240, 241, 0.2) 0px 0px 40px 10px;
-            height:3.2rem;
-
-            .buttonText {
-                color: $white-text;
-
-            }
-
-            .arrow {
-                position:absolute;
-                right: 10px;
-                top:50%;
-                transform: translateY(-50%);
-                font-size: 1.2rem;
-                color: $white-text-secondary;
-
-            }
-        }
-    }
-
-    .mainMenu {
-        margin-top:1rem;
-
-        .menuListContainer {
-
-            .listName {
-                color: $white-text-secondary;
-                font-weight: 500;;
-
-            }
-
-            .list {
-                margin-top:1rem;
-
-                .listItem {
-                    display:flex;
-                    margin-bottom: 2rem;
-
-                    .itemImage {
-                        width: 4rem;
-                        height: 4rem;
-                        border-radius:4px;
-                    }
-
-                    .itemDetails {
-                        width: 100%;
-                        margin-left: .7rem;
-                        .itemName {
-                            color: $white-text;
-
-                        }
-
-                        .itemPrice {
-                            color: $orange;
-                            font-weight: 500;
-                            font-size:1.1rem;
-                        }
-                       
-                        .itemPicker {
-                            display:flex;
-                            align-items:center;
-                            justify-content:flex-end;
-                            height:1.4rem;
-
-                            .iconLeft {
-                                background-color:$orange;
-                                border-radius:2px 0px 0px 2px;
-                                height:100%;
-                                width: 1.4rem;
-                            }
-
-                            .iconRight {
-                                background-color:$orange;
-                                border-radius:0px 2px 2px 0px;
-                                height:100%;
-                                width: 1.4rem;
-
-
-                            }
-
-                            .number {
-                                background-color:$white-text;
-                                color:$orange;
-                                height:99%;
-                                padding:0rem .5rem;
-                                display:flex;
-                                align-items:center;
-                                justify-content:center;
-                            }
-                        }
-
-                        .itemDescription {
-                            font-size: .7rem;
-                            color: $white-text-secondary;
-
-                        }
-
-                        .addButton {
-                            height:1.6rem;
-                            font-size: .7rem;
-                            width: fit-content;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            border-radius: 20px;
-
-                        }
-                    }
-                }
-            }
-        }
-    }
+  }
 }

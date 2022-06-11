@@ -1,35 +1,48 @@
-import { Col, Form, Input, InputNumber, Modal, Row, Select } from 'antd';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { useState } from "react"
-import { countryCodes } from '../components/data/countryCodes';
-import GButton from '/components/GButton';
-import Styles from '/styles/pages/Home.module.scss';
+import { Col, Form, Input, InputNumber, Modal, Row, Select } from "antd";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { countryCodes } from "../components/data/countryCodes";
+import GButton from "/components/GButton";
+import Styles from "/styles/pages/Home.module.scss";
 
 const { Option } = Select;
 
 export default function Home() {
-  const [showModal, setShowModal] = useState("")
-  const router = useRouter()
-
+  const [showModal, setShowModal] = useState("");
+  const router = useRouter();
 
   return (
     <div className={Styles.homeContainer}>
       <div className={Styles.logoContainer}>
-        <Image src={"/images/logo-full.svg"} width={200} height={100} objectFit="contain" alt="guacamole logo" />
+        <Image
+          src={"/images/logo-full.svg"}
+          width={200}
+          height={100}
+          objectFit="contain"
+          alt="guacamole logo"
+        />
       </div>
 
       <Col className={Styles.buttonsContainer}>
         <GButton className={Styles.button}>Download the App</GButton>
-        <GButton style={{color:"#E85D04"}} secondary className={Styles.button} onClick={() => setShowModal(true)}>Continue with Web</GButton>
+        <GButton
+          secondary
+          className={Styles.button}
+          onClick={() => setShowModal(true)}
+        >
+          Continue with Web
+        </GButton>
       </Col>
 
-      <p className={Styles.note}>Download the App to get access to exclusive Guacamol offers.</p>
+      <p className={Styles.note}>
+        Download the App to get access to exclusive Guacamol offers.
+      </p>
 
       <Modal
         style={{
           top: "100vh",
-          transform: "translateY(-105%)"
+          transform: "translateY(-105%)",
         }}
         visible={showModal}
         footer={false}
@@ -43,11 +56,7 @@ export default function Home() {
           <Form.Item className={Styles.formItem}>
             <Input placeholder="Enter your Name" className={Styles.formInput} />
           </Form.Item>
-          <Form.Item
-            className={Styles.formItem}
-
-
-          >
+          <Form.Item className={Styles.formItem}>
             <InputNumber
               controls={false}
               placeholder="Contact Number"
@@ -55,10 +64,9 @@ export default function Home() {
               className={Styles.formInput}
             />
           </Form.Item>
-          <GButton onClick={() => router.push('/122/menu')}>Next</GButton>
-
+          <GButton onClick={() => router.push("/122/menu")}>Next</GButton>
         </Form>
       </Modal>
     </div>
-  )
+  );
 }

@@ -1,16 +1,16 @@
 @import "../variables";
 
 .GButton {
-    width: 100%;
-    height: 3rem;
-    background:$orange;
-    color:$white-text;
-    border:none;
-    font-weight: 500;
-    border-radius:6px;
+  width: 100%;
+  height: 3rem;
+  background: $orange;
+  color: $white-text;
+  border: none;
+  font-weight: 500;
+  border-radius: 6px;
 }
 
 .GButtonSecondary {
-    background:#e5e5e5;
-    color:$orange;
+  background: #e5e5e5;
+  color: $orange !important;
 }
