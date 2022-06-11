@@ -25,12 +25,12 @@ const MenuList = () => {
                                     <div className={Styles.itemDescription}>Lorem ipsum dolor sit amet consectetur. </div>
                                 </Col>
                                 <Col span={5} offset={1} style={{display: 'flex',justifyContent:"flex-end"}}>
-                                    <GButton className={Styles.addButton}>Add</GButton>
-                                    {/* <div className={Styles.itemPicker}>
+                                    {/* <GButton className={Styles.addButton}>Add</GButton> */}
+                                    <div className={Styles.itemPicker}>
                                         <BsPlus className={Styles.iconLeft} />
                                         <div className={Styles.number} >1</div>
                                         <BiMinus className={Styles.iconRight} />
-                                    </div> */}
+                                    </div>
                                 </Col>
                             </Row>
                         </div>

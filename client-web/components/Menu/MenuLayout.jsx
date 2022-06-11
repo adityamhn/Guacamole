@@ -3,8 +3,11 @@ import React from 'react'
 import GButton from '../GButton'
 import Styles from "/styles/components/MenuLayout.module.scss"
 import { MdKeyboardArrowRight } from "react-icons/md"
+import { useRouter } from 'next/router'
 
 const MenuLayout = ({ children }) => {
+    const router = useRouter()
+
     return (
         <div className={Styles.MenuLayoutContainer}>
             <div className={Styles.MenuHeader}>
@@ -21,7 +24,7 @@ const MenuLayout = ({ children }) => {
                 {children}
             </div>
             <div className={Styles.footer}>
-                <GButton className={Styles.footerButton}>
+                <GButton className={Styles.footerButton} onClick={() => router.push("/213123/order/12123")}>
                     <div className={Styles.buttonText}>1 Item | ₹250</div>
                     <div style={{fontSize:".7rem",color:"#e5e5e5"}}>Click to Place order</div>
                     <MdKeyboardArrowRight className={Styles.arrow} />

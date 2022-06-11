@@ -21,7 +21,7 @@ export default function Home() {
 
       <Col className={Styles.buttonsContainer}>
         <GButton className={Styles.button}>Download the App</GButton>
-        <GButton secondary className={Styles.button} onClick={() => setShowModal(true)}>Continue with Web</GButton>
+        <GButton style={{color:"#E85D04"}} secondary className={Styles.button} onClick={() => setShowModal(true)}>Continue with Web</GButton>
       </Col>
 
       <p className={Styles.note}>Download the App to get access to exclusive Guacamol offers.</p>

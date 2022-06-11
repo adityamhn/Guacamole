@@ -2,8 +2,10 @@ import React from 'react'
 import Styles from '/styles/pages/Order.module.scss';
 import { IoIosClose } from "react-icons/io"
 import GButton from '/components/GButton';
+import { useRouter } from 'next/router';
 
 const OrderId = () => {
+    const router = useRouter()
     return (
         <div className={Styles.orderContainer}>
             <div className={Styles.order}>
@@ -18,7 +20,7 @@ const OrderId = () => {
                 <div className={Styles.orderItem}><span style={{ marginRight: 24 }}>Chicken Burger</span><IoIosClose />1</div>
 
 
-                <GButton className={Styles.okButton}>Okayy</GButton>
+                <GButton className={Styles.okButton} onClick={() => router.back()}>Okayy</GButton>
             </div>
         </div>
     )
