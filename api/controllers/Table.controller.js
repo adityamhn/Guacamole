@@ -5,7 +5,8 @@ const TableModel = require("../models/Table.model");
 const jwt = require("jsonwebtoken");
 
 exports.GetAllTables = (req, res, next) => {
-  return TableModel.find({})
+  const { r_id } = req.body;
+  return TableModel.find({ r_id })
     .then((tables) => {
       return res.status(200).json({
         success: true,
@@ -49,7 +50,7 @@ exports.GetTableDetails = (req, res, next) => {
 };
 
 exports.AddTable = async (req, res, next) => {
-  const { u_id, r_id, status, lastOccupancy } = req.body;
+  const { r_id } = req.body;
 
   if (!r_id)
     return res.status(400).json({
@@ -58,10 +59,7 @@ exports.AddTable = async (req, res, next) => {
     });
 
   const newTable = new TableModel({
-    u_id,
     r_id,
-    status,
-    lastOccupancy,
   });
 
   newTable.save();
@@ -105,8 +103,8 @@ exports.DeleteTable = async (req, res, next) => {
     });
 };
 
-// make occupied
-exports.DeleteTable = async (req, res, next) => {
+// make frees
+exports.MakeFree = async (req, res, next) => {
   const { _id, r_id } = req.body;
   if (!_id || !r_id)
     return res.status(500).json({
@@ -122,8 +120,100 @@ exports.DeleteTable = async (req, res, next) => {
       success: false,
       message: "Table not found!",
     });
+  table.status = "Free";
+  await table
+    .save()
+    .then(async () => {
+      return res.status(200).json({
+        success: true,
+      });
+    })
+    .catch((err) => {
+      console.log("Error");
+      console.log(err);
+      return res.status(500).json({
+        success: false,
+        message: "Unknown server error!",
+      });
+    });
 };
 
-// make being_cleaned
+//add user
+exports.AddUser = async (req, res, next) => {
+  const { _id, r_id, u_id } = req.body;
+  if (!_id || !r_id || !u_id)
+    return res.status(500).json({
+      success: false,
+      message: "Required values not provided!",
+    });
+  const table = await TableModel.findById({
+    _id,
+    r_id,
+  });
+  if (!table)
+    return res.status(500).json({
+      success: false,
+      message: "Table not found!",
+    });
+  const user = await UserModel.findById({
+    _id: u_id,
+  });
+  if (!user)
+    return res.status(500).json({
+      success: false,
+      message: "User not found!",
+    });
+  table.status = "occupied";
+  table.u_id = u_id;
+  await table
+    .save()
+    .then(async () => {
+      return res.status(200).json({
+        success: true,
+      });
+    })
+    .catch((err) => {
+      console.log("Error");
+      console.log(err);
+      return res.status(500).json({
+        success: false,
+        message: "Unknown server error!",
+      });
+    });
+};
 
-// make frees
+//remove user
+exports.RemoveUser = async (req, res, next) => {
+  const { _id, r_id } = req.body;
+  if (!_id || !r_id)
+    return res.status(500).json({
+      success: false,
+      message: "Required values not provided!",
+    });
+  const table = await TableModel.findById({
+    _id,
+    r_id,
+  });
+  if (!table)
+    return res.status(500).json({
+      success: false,
+      message: "Table not found!",
+    });
+  table.status = "being_cleaned";
+  table.u_id = null;
+  await table
+    .save()
+    .then(async () => {
+      return res.status(200).json({
+        success: true,
+      });
+    })
+    .catch((err) => {
+      console.log("Error");
+      console.log(err);
+      return res.status(500).json({
+        success: false,
+        message: "Unknown server error!",
+      });
+    });
+};

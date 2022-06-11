@@ -4,7 +4,7 @@ const TableSchema = new mongoose.Schema({
   u_id: {
     type: mongoose.Schema.Types.ObjectId,
     required: false,
-    default: "",
+    default: null,
   },
   r_id: {
     type: mongoose.Schema.Types.ObjectId,
