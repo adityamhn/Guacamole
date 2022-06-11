@@ -61,8 +61,12 @@ exports.AddTable = async (req, res, next) => {
   const newTable = new TableModel({
     r_id,
   });
-  const Restaurant = RestaurantModel.findById({ _id: r_id });
+  const Restaurant = await RestaurantModel.findById({
+    _id: r_id,
+  });
+  Restaurant.tables.push(newTable.id);
   newTable.save();
+  Restaurant.save();
 
   return res.status(200).json({
     success: true,
