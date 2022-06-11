@@ -94,3 +94,15 @@ exports.updateItem = async (req, res, next) => {
       });
     });
 };
+
+exports.deleteItem = async (req, res, next) => {
+  const { _id } = req.body;
+  if (!_id)
+    return res.status(400).json({
+      success: false,
+      message: "Item ID not provided!",
+    });
+  item = ItemModel.findById(_id);
+  item.deleteItem();
+  item.save();
+};
