@@ -2,15 +2,39 @@ import { Col, Form, Input, InputNumber, Modal, Row, Select } from "antd";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { countryCodes } from "../components/data/countryCodes";
+import { countryCodes } from "../../components/data/countryCodes";
 import GButton from "/components/GButton";
 import Styles from "/styles/pages/Home.module.scss";
+import { useSelector, useDispatch } from "react-redux";
+import { login } from "../../store/user.slice";
 
 const { Option } = Select;
 
-export default function Home() {
+export default function Home({ tableId }) {
+  const { isLoggedIn, restaurantId } = useSelector((state) => state.user);
+
   const [showModal, setShowModal] = useState("");
   const router = useRouter();
+  const dispatch = useDispatch();
+
+  const handleLogin = () => {
+    setShowModal("");
+
+    dispatch(
+      login({
+        restaurantId,
+        tableId,
+        user: {},
+        isLoggedIn: true,
+        token: "",
+      })
+    );
+    router.push(`/${restaurantId}/menu`);
+  };
+
+  if (isLoggedIn) {
+    router.push(`/${restaurantId}/menu`);
+  }
 
   return (
     <div className={Styles.homeContainer}>
@@ -64,9 +88,13 @@ export default function Home() {
               className={Styles.formInput}
             />
           </Form.Item>
-          <GButton onClick={() => router.push("/122/menu")}>Next</GButton>
+          <GButton onClick={handleLogin}>Next</GButton>
         </Form>
       </Modal>
     </div>
   );
 }
+
+Home.getInitialProps = ({ query: { restaurantId, tableId } }) => {
+  return { tableId };
+};
