@@ -1,17 +1,17 @@
 const express = require("express");
 const {
-  GetAllUsers,
+  GetAllRestaurants,
   SignUp,
   SignIn,
   CheckedSignedIn,
-  UpdateUserDetails,
-  GetUserDetails,
-} = require("../controllers/User.controller");
+  UpdateRestaurantDetails,
+  GetRestaurantDetails,
+} = require("../controllers/Restaurant.controller");
 const CheckJWT = require("../middleware/jwt.middleware");
 
 const router = express.Router();
 
-router.get("/get-all-users", CheckJWT, GetAllUsers);
+router.get("/get-all-restaurants", CheckJWT, GetAllRestaurants);
 
 router.post("/sign-up", SignUp);
 
@@ -19,7 +19,7 @@ router.post("/sign-in", SignIn);
 
 router.get("/check-signed-in", CheckJWT, CheckedSignedIn);
 
-router.put("/update-user-details", CheckJWT, UpdateUserDetails);
+router.put("/update-restaurant-details", CheckJWT, UpdateRestaurantDetails);
 
-router.get("/get-user-details", CheckJWT, GetUserDetails);
+router.get("/get-restaurant-details", CheckJWT, GetRestaurantDetails);
 module.exports = router;

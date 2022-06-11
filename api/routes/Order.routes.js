@@ -7,6 +7,6 @@ const CheckJWT = require("../middleware/jwt.middleware");
 
 const router = express.Router();
 
-router.get("/add-order", CheckJWT, AddOrder);
+router.post("/add-order", CheckJWT, AddOrder);
 
 router.get("/get-order-details", CheckJWT, GetOrderDetails);
