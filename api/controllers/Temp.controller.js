@@ -24,18 +24,27 @@ exports.GetAllUsers = (req, res, next) => {
 };
 
 exports.SignUp = async (req, res, next) => {
-  const { phoneNumber, name, password } = req.body;
+  const { phoneNumber, name } = req.body;
 
-  const phoneNumberCheck = await UserModel.find({
-    phoneNumber,
-  });
-  const newUser = new UserModel({ phoneNumber, name, password });
-  console.log("new user", newUser);
-  newUser
+  const newUser = new UserModel({ phoneNumber, name });
+  await newUser
     .save()
     .then(async (n) => {
+      let HASH = process.env.JWT_HASH;
+
+      const token = jwt.sign(
+        {
+          newUser,
+        },
+        HASH,
+        {
+          expiresIn: "10h",
+        }
+      );
       return res.status(200).json({
         success: true,
+        token,
+        user: n,
       });
     })
     .catch((err) => {

@@ -22,7 +22,6 @@ const UserSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true,
   },
   location: {
     type: String,
@@ -32,7 +31,7 @@ const UserSchema = new mongoose.Schema({
 });
 
 UserSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) {
+  if (!this.password) {
     next();
   }
 
@@ -49,7 +48,6 @@ UserSchema.methods.GetUserData = async function () {
   const user = this;
   return {
     name: user.name,
-    password: user.password,
     phoneNumber: user.phoneNumber,
     location: user.location,
   };

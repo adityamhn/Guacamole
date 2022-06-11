@@ -5,7 +5,7 @@ const {
   GetUserDetails,
   AddToCart,
   ConfirmCart,
-} = require("../controllers/User.controller");
+} = require("../controllers/Temp.controller");
 const CheckJWT = require("../middleware/jwt.middleware");
 
 const router = express.Router();

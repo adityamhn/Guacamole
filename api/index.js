@@ -61,11 +61,12 @@ app.use("/api/restaurant", require("./routes/Restaurant.routes"));
 app.use("/api/order", require("./routes/Order.routes"));
 app.use("/api/item", require("./routes/Item.routes"));
 app.use("/api/table", require("./routes/Table.routes"));
+app.use("/api/temp", require("./routes/Temp.routes"));
 
 app.get("/welcome", (req, res, next) => {
   return res.status(200).json({
     success: true,
-    message: "Welcome to MRex api!",
+    message: "Welcome to Guac api!",
   });
 });
 const PORT = process.env.PORT || 8010;

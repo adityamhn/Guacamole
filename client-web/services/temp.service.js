@@ -1,5 +1,5 @@
 import axios from "axios";
-import store from "../app/store";
+import store from "../store";
 import { BACKEND_URL } from "../constants";
 
 export const GetAllUsers = () => {

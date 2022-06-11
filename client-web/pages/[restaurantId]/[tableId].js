@@ -7,29 +7,44 @@ import GButton from "/components/GButton";
 import Styles from "/styles/pages/Home.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../store/user.slice";
+import { SignUpUser } from "../../services/temp.service";
 
 const { Option } = Select;
 
-export default function Home({ tableId }) {
-  const { isLoggedIn, restaurantId } = useSelector((state) => state.user);
+export default function Home({ restaurantId, tableId }) {
+  const { isLoggedIn } = useSelector((state) => state.user);
 
   const [showModal, setShowModal] = useState("");
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const handleLogin = () => {
-    setShowModal("");
-
-    dispatch(
-      login({
-        restaurantId,
-        tableId,
-        user: {},
-        isLoggedIn: true,
-        token: "",
-      })
+  const handleLogin = async (values) => {
+    console.log(
+      "🚀 ~ file: [tableId].js ~ line 22 ~ handleLogin ~ values",
+      values
     );
-    router.push(`/${restaurantId}/menu`);
+
+    await SignUpUser({
+      ...values,
+    })
+      .then((res) => {
+        console.log("sig", res);
+        if (res.data.success) {
+          dispatch(
+            login({
+              restaurantId,
+              tableId,
+              isLoggedIn: true,
+              user: res.data.user,
+              token: res.data.token,
+            })
+          );
+          router.push(`/${restaurantId}/menu`);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   if (isLoggedIn) {
@@ -75,12 +90,12 @@ export default function Home({ tableId }) {
         maskClosable={true}
         onCancel={() => setShowModal(false)}
       >
-        <Form className={Styles.loginForm}>
+        <Form className={Styles.loginForm} onFinish={handleLogin}>
           <h3>Enter your Details</h3>
-          <Form.Item className={Styles.formItem}>
+          <Form.Item className={Styles.formItem} name="name">
             <Input placeholder="Enter your Name" className={Styles.formInput} />
           </Form.Item>
-          <Form.Item className={Styles.formItem}>
+          <Form.Item className={Styles.formItem} name="phoneNumber">
             <InputNumber
               controls={false}
               placeholder="Contact Number"
@@ -88,7 +103,7 @@ export default function Home({ tableId }) {
               className={Styles.formInput}
             />
           </Form.Item>
-          <GButton onClick={handleLogin}>Next</GButton>
+          <GButton htmlType="submit">Next</GButton>
         </Form>
       </Modal>
     </div>
@@ -96,5 +111,5 @@ export default function Home({ tableId }) {
 }
 
 Home.getInitialProps = ({ query: { restaurantId, tableId } }) => {
-  return { tableId };
+  return { restaurantId, tableId };
 };
