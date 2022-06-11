@@ -14,7 +14,7 @@ const OrderSchema = new mongoose.Schema({
     required: false,
     default: [],
   },
-  Cost: {
+  cost: {
     type: String,
     required: true,
   }
@@ -26,7 +26,7 @@ OrderSchema.methods.GetOrderData = async function () {
     u_id: order.u_id,
     r_id: order.r_id,
     items: order.items,
-    Cost: order.Cost,
+    cost: order.cost,
   };
 };
 
