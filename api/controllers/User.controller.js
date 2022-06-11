@@ -203,11 +203,11 @@ exports.AddToCart = async (req, res, next) => {
       success: false,
       message: "Item not found!",
     });
-
   user.cart.push(item);
   await user
     .save()
     .then(async () => {
+      console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
       return res.status(200).json({
         success: true,
       });
@@ -224,23 +224,39 @@ exports.AddToCart = async (req, res, next) => {
 
 //Turn Cart to order
 exports.ConfirmCart = async (req, res, next) => {
-  const { _id, table_id } = req.body;
-  if (!_id || !table_id)
+  const uid = res.locals.uid;
+  if (!uid)
     return res.status(500).json({
       success: false,
       message: "Required values not provided!",
     });
 
-  const table = await TableModel.findById({
-    _id: table_id,
+  const table = await TableModel.findOne({
+    u_id: uid,
+  });
+
+  const user = await UserModel.findById({
+    _id: uid,
   });
 
   table.orders = user.cart;
-  const user = await UserModel.findById({
-    _id,
-  });
-  user.order.push(user.cart);
-  user.cart = null;
-  await table.save();
+  user.orders.push(user.cart);
+  user.cart = [];
+  console.log("Done");
   await user.save();
+  await table
+    .save()
+    .then(async (n) => {
+      return res.status(200).json({
+        success: true,
+      });
+    })
+    .catch((err) => {
+      console.log("Error!");
+      console.log(err);
+      return res.status(500).json({
+        success: false,
+        message: "Unknown server error.",
+      });
+    });
 };
