@@ -11,8 +11,6 @@ const RestaurantMenu = ({ restaurantId }) => {
     })
   );
 
-  console.log(menu);
-
   return (
     <MenuLayout>
       <MenuList isLoading={isLoading} menu={menu?.data?.items} />

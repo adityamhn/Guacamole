@@ -19,16 +19,10 @@ export default function Home({ restaurantId, tableId }) {
   const dispatch = useDispatch();
 
   const handleLogin = async (values) => {
-    console.log(
-      "🚀 ~ file: [tableId].js ~ line 22 ~ handleLogin ~ values",
-      values
-    );
-
     await SignUpUser({
       ...values,
     })
       .then((res) => {
-        console.log("sig", res);
         if (res.data.success) {
           dispatch(
             login({

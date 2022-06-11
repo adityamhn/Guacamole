@@ -32,6 +32,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const { login, update, logout, updateProgram, redirectUrl } =
+export const { login, update, logout, updateRestaurantId, updateCart } =
   userSlice.actions;
 export default userSlice.reducer;

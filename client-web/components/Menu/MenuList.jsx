@@ -5,7 +5,11 @@ import Styles from "/styles/components/MenuLayout.module.scss";
 import { BsPlus } from "react-icons/bs";
 import { BiMinus } from "react-icons/bi";
 
+import { useDispatch } from "react-redux";
+import { updateCart } from "../../store/user.slice";
+
 const MenuList = ({ isLoading, menu }) => {
+  const dispatch = useDispatch();
   const [cart, setCart] = useState({});
 
   return (
@@ -19,7 +23,6 @@ const MenuList = ({ isLoading, menu }) => {
           menu &&
           menu.map((item, index) => (
             <div className={Styles.listItem} key={index}>
-              {console.log("item", item)}
               <Image
                 className={Styles.itemImage}
                 src={item.itemPhoto}
@@ -48,30 +51,48 @@ const MenuList = ({ isLoading, menu }) => {
                       position: "relative",
                     }}
                   >
-                    {cart[item.id] ? (
+                    {cart[item._id] ? (
                       <div className={Styles.itemPicker}>
                         <BiMinus
                           className={Styles.iconLeft}
                           onClick={() => {
-                            if (cart[item.id] > 1) {
+                            if (cart[item._id] > 1) {
                               setCart({
                                 ...cart,
-                                [item.id]: cart[item.id] - 1,
+                                [item._id]: cart[item._id] - 1,
                               });
+                              dispatch(
+                                updateCart({
+                                  ...cart,
+                                  [item._id]: cart[item._id] - 1,
+                                })
+                              );
                             } else {
-                              setCart({ ...cart, [item.id]: 0 });
+                              setCart({ ...cart, [item._id]: null });
+                              dispatch(
+                                updateCart({
+                                  ...cart,
+                                  [item._id]: null,
+                                })
+                              );
                             }
                           }}
                         />
                         <div className={Styles.number}>
-                          {cart[item.id] ? cart[item.id] : 0}
+                          {cart[item._id] ? cart[item._id] : 0}
                         </div>
                         <BsPlus
                           onClick={() => {
                             setCart({
                               ...cart,
-                              [item.id]: cart[item.id] + 1,
+                              [item._id]: cart[item._id] + 1,
                             });
+                            dispatch(
+                              updateCart({
+                                ...cart,
+                                [item._id]: cart[item._id] + 1,
+                              })
+                            );
                           }}
                           className={Styles.iconRight}
                         />
@@ -79,7 +100,13 @@ const MenuList = ({ isLoading, menu }) => {
                     ) : (
                       <GButton
                         onClick={() => {
-                          setCart({ ...cart, [item.id]: 1 });
+                          setCart({ ...cart, [item._id]: 1 });
+                          dispatch(
+                            updateCart({
+                              ...cart,
+                              [item._id]: 1,
+                            })
+                          );
                         }}
                         className={Styles.addButton}
                       >
