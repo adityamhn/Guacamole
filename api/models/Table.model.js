@@ -3,11 +3,17 @@ const mongoose = require("mongoose");
 const TableSchema = new mongoose.Schema({
   u_id: {
     type: mongoose.Schema.Types.ObjectId,
+    required: false,
+    default: "",
+  },
+  r_id: {
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
   status: {
     type: String,
-    required: true,
+    required: false,
+    default: "free",
   },
   lastOccupancy: {
     type: Date,

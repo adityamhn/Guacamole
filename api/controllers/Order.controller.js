@@ -7,7 +7,7 @@ const ItemModel = require("../models/Item.model");
 exports.AddOrder = async (req, res, next) => {
   const { u_id, r_id, items } = req.body;
 
-  if (!u_id || !r_id || items)
+  if (!u_id || !r_id)
     return res.status(500).json({
       success: false,
       message: "Required values not provided!",
@@ -19,16 +19,16 @@ exports.AddOrder = async (req, res, next) => {
     },
   });
 
-  var price = 0;
+  var cost = 0;
   itemPrices.forEach((item) => {
-    price += item.price;
+    cost += item.price;
   });
 
   const newOrder = new OrderModel({
     u_id,
     r_id,
     items,
-    price,
+    cost,
   });
 
   newOrder
