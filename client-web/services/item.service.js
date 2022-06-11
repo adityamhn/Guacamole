@@ -21,3 +21,23 @@ export const GetItemByRestaurantId = (body) => {
     },
   });
 };
+
+export const UpdateItem = (body) => {
+  const { token } = store.getState().auth;
+  if (!token) throw new Error("Token not found!");
+  return axios.post(`${BACKEND_URL}/api/item/update-item`, body, {
+    headers: {
+      token,
+    },
+  });
+};
+
+export const DeleteItem = (body) => {
+  const { token } = store.getState().auth;
+  if (!token) throw new Error("Token not found!");
+  return axios.post(`${BACKEND_URL}/api/item/delete-item`, body, {
+    headers: {
+      token,
+    },
+  });
+};

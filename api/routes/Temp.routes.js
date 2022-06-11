@@ -14,7 +14,7 @@ router.get("/get-all-users", CheckJWT, GetAllUsers);
 
 router.post("/sign-up", SignUp);
 
-router.get("/get-user-details", CheckJWT, GetUserDetails);
+router.post("/get-user-details", CheckJWT, GetUserDetails);
 
 router.post("/add-to-cart", CheckJWT, AddToCart);
 

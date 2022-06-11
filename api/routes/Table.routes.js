@@ -14,7 +14,7 @@ const router = express.Router();
 
 router.get("/get-all-tables", CheckJWT, GetAllTables);
 
-router.get("/get-table-details", CheckJWT, GetTableDetails);
+router.post("/get-table-details", CheckJWT, GetTableDetails);
 
 router.post("/add-table", CheckJWT, AddTable);
 
