@@ -207,7 +207,6 @@ exports.AddToCart = async (req, res, next) => {
   await user
     .save()
     .then(async () => {
-      console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
       return res.status(200).json({
         success: true,
       });
