@@ -3,7 +3,6 @@ const OrderModel = require("../models/Order.model");
 const RestaurantModel = require("../models/Restaurant.model");
 const jwt = require("jsonwebtoken");
 
-
 exports.GetAllUsers = (req, res, next) => {
   return UserModel.find({})
     .then((users) => {
@@ -23,12 +22,12 @@ exports.GetAllUsers = (req, res, next) => {
 };
 
 exports.SignUp = async (req, res, next) => {
-  const { email } = req.body;
+  const { phoneNumber, name } = req.body;
 
-  const emailCheck = await UserModel.find({
-    email,
+  const phoneNumberCheck = await UserModel.find({
+    phoneNumber,
   });
-  if (emailCheck.length !== 0) {
+  if (phoneNumberCheck.length !== 0) {
     return res.status(500).json({
       success: false,
       message: "Email already exists!",
@@ -55,15 +54,15 @@ exports.SignUp = async (req, res, next) => {
 
 exports.SignIn = (req, res, next) => {
   console.log("called");
-  const { email, password } = req.body;
-  if (!email || !password)
+  const { phoneNumber, password } = req.body;
+  if (!phoneNumber || !password)
     return res.status(500).json({
       success: false,
       message: "Required values not provided!",
     });
   let HASH = process.env.JWT_HASH;
   UserModel.findOne({
-    email,
+    phoneNumber,
   })
     .then(async (user) => {
       if (user) {
@@ -120,7 +119,6 @@ exports.CheckedSignedIn = (req, res, next) => {
   });
 };
 
-
 exports.UpdateUserDetails = (req, res, next) => {
   const newDetails = req.body;
   if (!res.locals.uid || !newDetails)
@@ -153,14 +151,41 @@ exports.UpdateUserDetails = (req, res, next) => {
 };
 
 exports.GetUserDetails = (req, res, next) => {
-  const { email } = res.locals;
-  if (!email)
+  const { phoneNumber } = res.locals;
+  if (!phoneNumber)
     return res.status(500).json({
       success: false,
       message: "Required values not provided!",
     });
   return UserModel.findOne({
-    email,
+    phoneNumber,
+  })
+    .then((user) => {
+      return res.status(200).json({
+        success: true,
+        user: user,
+      });
+    })
+    .catch((err) => {
+      console.log("error");
+      console.log(err);
+      return res.status(500).json({
+        success: false,
+        message: "Unknown server error!",
+      });
+    });
+};
+
+// Add to cart
+exports.AddToCart = (req, res, next) => {
+  const { _id, item_id } = res.body;
+  if (!_id || item_id)
+    return res.status(500).json({
+      success: false,
+      message: "Required values not provided!",
+    });
+  return UserModel.findOne({
+    phoneNumber,
   })
     .then((user) => {
       return res.status(200).json({
