@@ -6,11 +6,14 @@ export const userSlice = createSlice({
     user: null,
     isLoggedIn: false,
     cart: [],
+    restaurantId: null,
+    token: "",
   },
   reducers: {
     login: (state, action) => {
-      state.user = action.payload;
+      state.user = action.payload.user;
       state.isLoggedIn = true;
+      state.token = action.payload.token;
     },
     update: (state, action) => {
       const prevUser = state.user;
@@ -20,8 +23,11 @@ export const userSlice = createSlice({
       state.user = null;
       state.isLoggedIn = false;
     },
-    addToCart: (state, action) => {
+    updateCart: (state, action) => {
       state.cart = action.payload;
+    },
+    updateRestaurantId: (state, action) => {
+      state.restaurantId = action.payload;
     },
   },
 });
