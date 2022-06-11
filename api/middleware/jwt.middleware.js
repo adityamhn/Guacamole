@@ -15,10 +15,11 @@ const CheckJWT = (req, res, next) => {
         message: "Token not provided!",
       });
     }
-    const userData = jwt.verify(token, process.env.JWT_HASH);
+    const { userData } = jwt.verify(token, process.env.JWT_HASH);
     // res.locals.key = userData.userData.password.substr(-16);
     // res.locals.email = userData.userData.email;
-    // res.locals.uid = userData.userData._id;
+    console.log(userData._id);
+    res.locals.uid = userData._id;
 
     let currentTime = Date.now().valueOf() / 1000;
     if (userData.exp < currentTime) {

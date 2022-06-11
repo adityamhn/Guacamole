@@ -16,7 +16,7 @@ const UserSchema = new mongoose.Schema({
     default: [],
   },
   orders: {
-    type: [mongoose.Types.ObjectId],
+    type: [[mongoose.Types.ObjectId]],
     required: false,
     default: [],
   },

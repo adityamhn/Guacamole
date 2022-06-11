@@ -7,6 +7,7 @@ const {
   UpdateUserDetails,
   GetUserDetails,
   AddToCart,
+  ConfirmCart,
 } = require("../controllers/User.controller");
 const CheckJWT = require("../middleware/jwt.middleware");
 
@@ -25,4 +26,6 @@ router.put("/update-user-details", CheckJWT, UpdateUserDetails);
 router.get("/get-user-details", CheckJWT, GetUserDetails);
 
 router.post("/add-to-cart", CheckJWT, AddToCart);
+
+router.post("/confirm-cart", CheckJWT, ConfirmCart);
 module.exports = router;
