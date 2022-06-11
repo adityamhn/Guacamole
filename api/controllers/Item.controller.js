@@ -3,7 +3,7 @@ const ItemModel = require("../models/Item.model");
 exports.AddItem = async (req, res, next) => {
   const { name, description, itemPhoto, price, isVeg, type, r_id } = req.body;
 
-  if (!name || !description || !itemPhoto || !price || !isVeg || !type || !r_id)
+  if (!name || !description || !itemPhoto || !price || !type || !r_id)
     return res.status(400).json({
       success: false,
       message: "Required values not provided!",

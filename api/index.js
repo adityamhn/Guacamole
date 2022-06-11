@@ -59,6 +59,7 @@ app.use(express.json())
 app.use('/api/user',require('./routes/User.routes'));
 app.use('/api/restaurant', require('./routes/Restaurant.routes'));
 app.use('/api/order', require('./routes/Order.routes'));
+app.use('/api/item', require('./routes/Item.routes'))
 
 app.get('/welcome', (req, res, next) => {
     return res.status(200).json({

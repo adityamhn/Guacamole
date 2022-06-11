@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 
 const OrderSchema = new mongoose.Schema({
   u_id: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
   r_id: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
   items: {
@@ -15,7 +15,7 @@ const OrderSchema = new mongoose.Schema({
     default: [],
   },
   cost: {
-    type: String,
+    type: Number,
     required: true,
   }
 });
