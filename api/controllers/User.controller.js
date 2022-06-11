@@ -30,7 +30,7 @@ exports.SignUp = async (req, res, next) => {
   if (phoneNumberCheck.length !== 0) {
     return res.status(500).json({
       success: false,
-      message: "Email already exists!",
+      message: "phone number already exists!",
     });
   }
   const newUser = new UserModel(req.body);
@@ -179,22 +179,37 @@ exports.GetUserDetails = (req, res, next) => {
 // Add to cart
 exports.AddToCart = (req, res, next) => {
   const { _id, item_id } = res.body;
-  if (!_id || item_id)
+  if (!_id || !item_id)
     return res.status(500).json({
       success: false,
       message: "Required values not provided!",
     });
-  return UserModel.findOne({
-    phoneNumber,
-  })
-    .then((user) => {
+    const user = await UserModel.findById({
+      _id,
+    });
+    if (!user)
+      return res.status(500).json({
+        success: false,
+        message: "User not found!",
+      });
+
+    const item = await ItemModel.findById({
+      _id: item_id,
+    });
+    if (!item)
+      return res.status(500).json({
+        success: false,
+        message: "Item not found!",
+      });
+
+    user.cart.push(item);
+    await user.save().then(async () => {
       return res.status(200).json({
         success: true,
-        user: user,
       });
     })
     .catch((err) => {
-      console.log("error");
+      console.log("Error");
       console.log(err);
       return res.status(500).json({
         success: false,
