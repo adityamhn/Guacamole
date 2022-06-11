@@ -22,7 +22,7 @@ exports.GetAllUsers = (req, res, next) => {
 };
 
 exports.SignUp = async (req, res, next) => {
-  const { phoneNumber, name } = req.body;
+  const { phoneNumber, name, password } = req.body;
 
   const phoneNumberCheck = await UserModel.find({
     phoneNumber,
@@ -33,8 +33,8 @@ exports.SignUp = async (req, res, next) => {
       message: "phone number already exists!",
     });
   }
-  const newUser = new UserModel(req.body);
-
+  const newUser = new UserModel({ phoneNumber, name, password });
+  console.log("new user", newUser);
   newUser
     .save()
     .then(async (n) => {

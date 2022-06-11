@@ -35,11 +35,13 @@ export default function RegisterPage({ navigation }) {
     setSubmitted(true);
     try {
       dispatch(SignUpThunk({ phoneNumber, password, name }));
+      setShow(true);
     } catch (err) {
       console.log("error");
       console.log(err);
     }
     setSubmitted(false);
+    setShow(false);
   };
 
   return (

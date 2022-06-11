@@ -50,7 +50,6 @@ UserSchema.methods.GetUserData = async function () {
   return {
     name: user.name,
     password: user.password,
-    email: user.email,
     phoneNumber: user.phoneNumber,
     location: user.location,
   };
