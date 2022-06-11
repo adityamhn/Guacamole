@@ -1,6 +1,8 @@
 const UserModel = require("../models/User.model");
 const OrderModel = require("../models/Order.model");
 const RestaurantModel = require("../models/Restaurant.model");
+const ItemModel = require("../models/Item.model");
+const TableModel = require("../models/Table.model");
 const jwt = require("jsonwebtoken");
 
 exports.GetAllUsers = (req, res, next) => {
@@ -178,7 +180,7 @@ exports.GetUserDetails = (req, res, next) => {
 
 // Add to cart
 exports.AddToCart = async (req, res, next) => {
-  const { _id, item_id } = res.body;
+  const { _id, item_id } = req.body;
   if (!_id || !item_id)
     return res.status(500).json({
       success: false,
@@ -218,4 +220,27 @@ exports.AddToCart = async (req, res, next) => {
         message: "Unknown server error!",
       });
     });
+};
+
+//Turn Cart to order
+exports.ConfirmCart = async (req, res, next) => {
+  const { _id, table_id } = req.body;
+  if (!_id || !table_id)
+    return res.status(500).json({
+      success: false,
+      message: "Required values not provided!",
+    });
+
+  const table = await TableModel.findById({
+    _id: table_id,
+  });
+
+  table.orders = user.cart;
+  const user = await UserModel.findById({
+    _id,
+  });
+  user.order.push(user.cart);
+  user.cart = null;
+  await table.save();
+  await user.save();
 };

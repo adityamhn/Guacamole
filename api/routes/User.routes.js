@@ -5,7 +5,8 @@ const {
   SignIn,
   CheckedSignedIn,
   UpdateUserDetails,
-  GetUserDetails
+  GetUserDetails,
+  AddToCart,
 } = require("../controllers/User.controller");
 const CheckJWT = require("../middleware/jwt.middleware");
 
@@ -22,4 +23,6 @@ router.get("/check-signed-in", CheckJWT, CheckedSignedIn);
 router.put("/update-user-details", CheckJWT, UpdateUserDetails);
 
 router.get("/get-user-details", CheckJWT, GetUserDetails);
+
+router.post("/add-to-cart", CheckJWT, AddToCart);
 module.exports = router;

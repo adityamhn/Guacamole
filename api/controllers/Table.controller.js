@@ -201,6 +201,7 @@ exports.RemoveUser = async (req, res, next) => {
     });
   table.status = "being_cleaned";
   table.u_id = null;
+  table.order = null;
   await table
     .save()
     .then(async () => {
