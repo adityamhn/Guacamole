@@ -22,16 +22,16 @@
 import React from "react";
 import { useFonts } from "expo-font";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import { Navigation } from "./infrastrucutre/navigation";
+import { Navigation } from "./infrastructure/index";
 import store from "./app/store";
 
 import { Provider } from "react-redux";
 
 export default function App() {
-  const [loaded] = useFonts({
-    BasisGrotesqueProBold: require("./fonts/BasisGrotesqueProBold.ttf"),
-    BasisGrotesqueProMiddle: require("./fonts/BasisGrotesqueProMedium.ttf"),
-  });
+  // const [loaded] = useFonts({
+  //   BasisGrotesqueProBold: require("./fonts/BasisGrotesqueProBold.ttf"),
+  //   BasisGrotesqueProMiddle: require("./fonts/BasisGrotesqueProMedium.ttf"),
+  // });
 
   if (!loaded) return null;
   return (
