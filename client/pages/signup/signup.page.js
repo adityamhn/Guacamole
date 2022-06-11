@@ -15,25 +15,26 @@ import {
 
 import Icon from "react-native-vector-icons/Ionicons";
 
-import { LoginThunk } from "../../app/auth.slice";
+import { LoginThunk, SignUpThunk } from "../../app/auth.slice";
 import { TouchableOpacity } from "react-native";
 import { SafeArea } from "../../components/SafeArea.component";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Colors, Text, View } from "react-native-ui-lib";
+import { Toast } from "react-native-ui-lib/src/incubator";
 
 export default function RegisterPage({ navigation }) {
-  const [email, setEmail] = useState("");
+  const [phoneNumber, setphoneNumber] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [show, setShow] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const userData = null;
   // const { userData } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const OnSignInClick = (e) => {
-    e.preventDefault();
-
+  const OnSignInClick = async () => {
     setSubmitted(true);
     try {
-      dispatch(LoginThunk({ email, password }));
+      dispatch(SignUpThunk({ phoneNumber, password, name }));
     } catch (err) {
       console.log("error");
       console.log(err);
@@ -60,6 +61,12 @@ export default function RegisterPage({ navigation }) {
               paddingTop: 20,
             }}
           >
+            <Toast
+              visible={show}
+              position={"top"}
+              autoDismiss={5000}
+              onDismiss={() => setShow(false)}
+            ></Toast>
             <Text>
               <Icon
                 name={"arrow-back"}
@@ -75,13 +82,13 @@ export default function RegisterPage({ navigation }) {
             <SubHeading>Experience the ease of ordering</SubHeading>
           </TextSection>
           <MainTextInput
-            onChangeText={setEmail}
-            placeholder="Enter your Email"
+            onChangeText={setphoneNumber}
+            placeholder="Enter your Phone Number"
             placeholderTextColor={"#858585"}
             autoCapitalize="none"
           />
           <MainTextInput
-            onChangeText={setEmail}
+            onChangeText={setName}
             placeholder="Enter your Name"
             placeholderTextColor={"#858585"}
             autoCapitalize="none"
@@ -108,7 +115,7 @@ export default function RegisterPage({ navigation }) {
             </TouchableOpacity>
           </SignUpContainer>
           <Button
-            onPress={() => navigation.navigate("Login")}
+            onPress={OnSignInClick}
             style={{
               marginBottom: 35,
 
@@ -120,7 +127,7 @@ export default function RegisterPage({ navigation }) {
               fontFamily: "PoppinsBold",
               paddingTop: 4,
             }}
-            label={"Login"}
+            label={"Create Account"}
             size={Button.sizes.large}
             borderRadius={8}
             backgroundColor={Colors.orange30}

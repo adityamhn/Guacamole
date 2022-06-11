@@ -24,7 +24,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Colors, Text, View } from "react-native-ui-lib";
 
 export default function LoginPage({ navigation }) {
-  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const userData = null;
@@ -35,7 +35,7 @@ export default function LoginPage({ navigation }) {
 
     setSubmitted(true);
     try {
-      dispatch(LoginThunk({ email, password }));
+      dispatch(LoginThunk({ phoneNumber, password }));
     } catch (err) {
       console.log("error");
       console.log(err);
@@ -77,8 +77,8 @@ export default function LoginPage({ navigation }) {
             <SubHeading>Welcome Back</SubHeading>
           </TextSection>
           <MainTextInput
-            onChangeText={setEmail}
-            placeholder="Email"
+            onChangeText={setPhone}
+            placeholder="Phone Number"
             placeholderTextColor={"#858585"}
             autoCapitalize="none"
           />
@@ -88,6 +88,7 @@ export default function LoginPage({ navigation }) {
             placeholderTextColor={"#858585"}
             secureTextEntry={true}
           />
+
           {/* <StartedButton
             color="white"
             uppercase={false}

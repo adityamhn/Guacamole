@@ -3,7 +3,6 @@ const OrderModel = require("../models/Order.model");
 const RestaurantModel = require("../models/Restaurant.model");
 const jwt = require("jsonwebtoken");
 
-
 exports.GetAllUsers = (req, res, next) => {
   return UserModel.find({})
     .then((users) => {
@@ -119,7 +118,6 @@ exports.CheckedSignedIn = (req, res, next) => {
     message: "User is signed in!",
   });
 };
-
 
 exports.UpdateUserDetails = (req, res, next) => {
   const newDetails = req.body;
