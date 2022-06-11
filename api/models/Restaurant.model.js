@@ -16,11 +16,6 @@ const RestaurantSchema = new mongoose.Schema({
     unique: true,
     match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
   },
-  orders: {
-    type: [mongoose.Types.ObjectId],
-    required: false,
-    default: [],
-  },
   tables: {
     type: [mongoose.Types.ObjectId],
     required: false,

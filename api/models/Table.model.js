@@ -15,6 +15,11 @@ const TableSchema = new mongoose.Schema({
     required: false,
     default: "free",
   },
+  orders: {
+    type: [mongoose.Types.ObjectId],
+    required: false,
+    default: [],
+  },
   lastOccupancy: {
     type: Date,
     required: false,

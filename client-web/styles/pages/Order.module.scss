@@ -1,0 +1,43 @@
+@import "../variables";
+
+.orderContainer {
+    min-height: 100vh;
+    height: 100%;
+    padding: 0rem 1rem;
+    background: $background;
+
+    .order {
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        margin-top: 8rem;
+
+        .title {
+            font-family: "Dinosaur";
+            color:$orange;
+            font-size:2rem;
+
+        }
+        .subtitle {
+            text-align:center;
+            margin-bottom:3rem;
+            color:$white-text-secondary;
+            
+        }
+
+        .orderItem{
+            display:flex;
+            align-items:center;
+            margin-bottom:.8rem;
+
+        }
+
+        .okButton {
+            width: fit-content;
+            padding:0rem 1rem;
+            height:2.5rem;
+            border-radius:30px;
+            margin-top: 3rem;
+        }
+    }
+}
