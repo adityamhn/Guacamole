@@ -1,12 +1,13 @@
 import React from "react";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
-import Profile from "../../pages/profile/Profile.page";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import UploadPage from "../../pages/uploadpage/UploadPage.page";
-import ReportPage from "../../pages/reports/Reports.page";
-import HomePage from "../../pages/home/Home.page";
+import PreLoginScreen from "../pages/PreLogin/prelogin.page";
+
+// import Profile from "../../pages/profile/Profile.page";
+// import UploadPage from "../../pages/uploadpage/UploadPage.page";
+// import ReportPage from "../../pages/reports/Reports.page";
+// import HomePage from "../../pages/home/Home.page";
 
 const Tab = createBottomTabNavigator();
 
@@ -16,7 +17,7 @@ export const AppNavigator = () => (
   >
     <Tab.Screen
       name="Home"
-      component={HomePage}
+      component={PreLoginScreen}
       options={{
         tabBarLabel: "Home",
         tabBarIcon: ({ color, size }) => (
@@ -25,7 +26,7 @@ export const AppNavigator = () => (
       }}
     />
 
-    <Tab.Screen
+    {/* <Tab.Screen
       name="Upload"
       component={UploadPage}
       options={{
@@ -55,6 +56,6 @@ export const AppNavigator = () => (
           <Icon name="user" color={color} size={size} />
         ),
       }}
-    />
+    /> */}
   </Tab.Navigator>
 );
