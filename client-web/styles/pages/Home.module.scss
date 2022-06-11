@@ -1,0 +1,56 @@
+@import "../variables";
+
+.homeContainer {
+    min-height: 100vh;
+    height: 100%;
+    background: url("../../images/burger.png") no-repeat center bottom,$background;
+    background-position: 50% 120%;
+    padding: 0rem 1rem;
+    background-size: 90%;
+    overflow: hidden;
+
+    .logoContainer {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 7rem;
+    }
+
+    .buttonsContainer {
+        margin-top: 7rem;
+
+        .button {
+            margin: 0.5rem 0rem;
+        }
+    }
+
+    .note {
+        color: $white-text-secondary;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+}
+
+
+.loginForm {
+
+    h3 {
+        color:$orange;
+        font-size:1.5rem;
+        margin-bottom:1rem;
+    }
+    .formItem {
+
+
+        .formInput {
+            background:#333;
+            border:none;
+            height:3rem;
+            border-radius:6px;
+            display: flex;
+            align-items: center;
+            color: $white-text;
+
+        }
+    }
+}
