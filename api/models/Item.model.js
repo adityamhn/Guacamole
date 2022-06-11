@@ -32,6 +32,9 @@ const ItemSchema = new mongoose.Schema({
     ref: "Restaurant",
     required: true,
   },
+  qty: {
+    type: Number,
+  },
 });
 
 ItemSchema.methods.GetItemData = async function () {
@@ -44,6 +47,7 @@ ItemSchema.methods.GetItemData = async function () {
     isVeg: Item.isVeg,
     type: Item.type,
     r_id: Item.r_id,
+    qty: Item.qty,
   };
 };
 

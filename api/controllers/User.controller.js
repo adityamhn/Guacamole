@@ -180,7 +180,7 @@ exports.GetUserDetails = (req, res, next) => {
 
 // Add to cart
 exports.AddToCart = async (req, res, next) => {
-  const { _id, item_id } = req.body;
+  const { _id, item_id, qty } = req.body;
   if (!_id || !item_id)
     return res.status(500).json({
       success: false,
@@ -203,6 +203,8 @@ exports.AddToCart = async (req, res, next) => {
       success: false,
       message: "Item not found!",
     });
+  item.qty = qty;
+  zz;
   user.cart.push(item);
   await user
     .save()
