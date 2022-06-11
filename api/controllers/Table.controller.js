@@ -61,7 +61,7 @@ exports.AddTable = async (req, res, next) => {
   const newTable = new TableModel({
     r_id,
   });
-
+  const Restaurant = RestaurantModel.findById(_id: r_id)
   newTable.save();
 
   return res.status(200).json({

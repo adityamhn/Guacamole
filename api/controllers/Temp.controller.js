@@ -29,12 +29,6 @@ exports.SignUp = async (req, res, next) => {
   const phoneNumberCheck = await UserModel.find({
     phoneNumber,
   });
-  if (phoneNumberCheck.length !== 0) {
-    return res.status(500).json({
-      success: false,
-      message: "phone number already exists!",
-    });
-  }
   const newUser = new UserModel({ phoneNumber, name, password });
   console.log("new user", newUser);
   newUser
