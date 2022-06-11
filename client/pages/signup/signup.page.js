@@ -26,8 +26,8 @@ export default function RegisterPage({ navigation }) {
   const [phoneNumber, setphoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [show, setShow] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [show, setShow] = useState(true);
+  const [submitted, setSubmitted] = useState(true);
   const userData = null;
   // const { userData } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -35,13 +35,11 @@ export default function RegisterPage({ navigation }) {
     setSubmitted(true);
     try {
       dispatch(SignUpThunk({ phoneNumber, password, name }));
-      setShow(true);
     } catch (err) {
       console.log("error");
       console.log(err);
     }
     setSubmitted(false);
-    setShow(false);
   };
 
   return (
@@ -66,9 +64,18 @@ export default function RegisterPage({ navigation }) {
             <Toast
               visible={show}
               position={"top"}
-              autoDismiss={5000}
+              //   autoDismiss={5000}
               onDismiss={() => setShow(false)}
-            ></Toast>
+            >
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
+              >
+                Successfully Registered
+              </Text>
+            </Toast>
             <Text>
               <Icon
                 name={"arrow-back"}
@@ -76,7 +83,6 @@ export default function RegisterPage({ navigation }) {
                 color={"#E85D04"}
                 onPress={() => navigation.goBack()}
               />
-              ;
             </Text>
           </View>
           <TextSection>

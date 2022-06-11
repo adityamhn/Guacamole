@@ -10,7 +10,10 @@ export const SignUpThunk = createAsyncThunk(
   "auth/signup-user",
   async (body, { rejectWithValue }) => {
     return SignUpUser(body)
-      .then((response) => response.data)
+      .then((response) => {
+        console.log("resp");
+        console.log(response);
+      })
       .catch((error) => {
         console.log("error");
         console.log(error);
