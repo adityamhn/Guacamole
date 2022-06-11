@@ -1,5 +1,14 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 
+// redux
+import { Provider } from "react-redux";
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
+
+import store from "../store";
+
+const persistor = persistStore(store);
+
 const queryClient = new QueryClient();
 
 import "../styles/globals.scss";
@@ -9,9 +18,13 @@ import "antd/dist/antd.css";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Component {...pageProps} />
-    </QueryClientProvider>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <QueryClientProvider client={queryClient}>
+          <Component {...pageProps} />
+        </QueryClientProvider>
+      </PersistGate>
+    </Provider>
   );
 }
 
