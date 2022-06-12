@@ -6,11 +6,12 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { GetRestaurantDetails } from "../../services/restaurant.service";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { AddOrder } from "../../services/order.service";
 import { GetTableInfo } from "../../services/temp.service";
 const MenuLayout = ({ children }) => {
   const { restaurantId, tableId, cart } = useSelector((state) => state.user);
+  const queryClient = useQueryClient()
 
   const router = useRouter();
   const { data: restaurantDetails, isLoading } = useQuery(
@@ -38,7 +39,9 @@ const MenuLayout = ({ children }) => {
   const returnQty = (item) => {
     let qty = 0;
     for (var item in cart) {
-      qty += cart[item]["qty"];
+      if (cart[item]) {
+        qty += cart[item]["qty"];
+      }
     }
     return qty;
   };
@@ -46,10 +49,13 @@ const MenuLayout = ({ children }) => {
   const returnTotal = (item) => {
     let total = 0;
     for (var item in cart) {
+      if (cart[item]) {
+
       total +=
         parseInt(cart[item]["qty"]) * parseInt(cart[item]["priceperqty"]);
       // total += item.qty * item.priceperqty;
     }
+  }
     return total;
   };
 
@@ -61,7 +67,7 @@ const MenuLayout = ({ children }) => {
             {restaurantDetails?.data?.restaurant?.name}
           </div>
           <div className={Styles.tableNumber}>
-            {restaurantDetails?.data?.restaurant?.name}
+            Table {restaurantDetails?.data?.restaurant?.tables.indexOf(tableId) + 1}
           </div>
         </Row>
         <div className={Styles.restAddress}>
@@ -98,6 +104,9 @@ const MenuLayout = ({ children }) => {
                     message: "Order Placed",
                     description: "Your order has been placed successfully",
                   });
+                  await queryClient.invalidateQueries("restaurant")
+                  await queryClient.invalidateQueries("table")
+
                 }
               }}
             >

@@ -6,12 +6,15 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import GButton from "../../components/GButton";
 import { useRouter } from "next/router";
 import { GetOrderDetails } from "../../services/order.service";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useQuery } from "react-query";
+import { logout } from "../../store/user.slice";
+
 
 const Payment = () => {
   const router = useRouter();
   const { restaurantId, tableId } = useSelector((state) => state.user);
+  const dispatch = useDispatch()
 
   const { data: orderDetails, isLoading: isLoadingTable } = useQuery(
     ["order-details", tableId],
@@ -107,10 +110,12 @@ const Payment = () => {
       <GButton className={Styles.footerButton}>
         <div
           className={Styles.buttonText}
-          onClick={() => {
+          onClick={async () => {
+
             notification.success({
               message: "Payment processed successfully",
             });
+            await dispatch(logout())
             router.push(`/${restaurantId}/${tableId}`);
           }}
         >

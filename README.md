@@ -1,5 +1,5 @@
 <p align="center">
-<img src="./images/logo.jpg" alt="drawing" width=40% margin="120">
+<img src="./images/logo.png" alt="drawing" width=40% margin="120">
 </p>
 Enjoy a hassle free dining experience with our virtual menu and contactless payment.
 
@@ -28,6 +28,6 @@ Enjoy a hassle free dining experience with our virtual menu and contactless paym
 2. After scanning, you will be presented with a menu where you can add items to your cart.
 3. Once you have decided what you want to eat, just click on confirm cart and the restaurant will recieve your order.
 4. After you're done eating, you'll get a payment screen where you'll be presented with the bill, which contains the dishes you ordered and the final amount payable after taxes.
-5. After you make the payment you're gucci
+5. After you make the payment you're set.
 
 video poc:
