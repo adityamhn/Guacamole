@@ -6,16 +6,13 @@ import { AppNavigator } from "./app.navigation";
 import OrderSuccessScreen from "../../pages/menu/orderSuccess.page";
 import PaymentScreen from "../../pages/payment/payment.page";
 
-
 const Stack = createStackNavigator();
 
 export const MenuNavigator = () => (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Dashboard" component={AppNavigator} />
-        <Stack.Screen name="Menu" component={MenuScreen} />
-        <Stack.Screen name="OrderSuccess" component={OrderSuccessScreen} />
-        <Stack.Screen name="Payment" component={PaymentScreen} />
-
-
-    </Stack.Navigator>
+  <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Screen name="DashboardMain" component={AppNavigator} />
+    <Stack.Screen name="Menu" component={MenuScreen} />
+    <Stack.Screen name="OrderSuccess" component={OrderSuccessScreen} />
+    <Stack.Screen name="Payment" component={PaymentScreen} />
+  </Stack.Navigator>
 );
