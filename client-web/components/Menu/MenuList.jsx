@@ -57,7 +57,7 @@ const MenuList = ({ isLoading, menu }) => {
                         <BiMinus
                           className={Styles.iconLeft}
                           onClick={() => {
-                            if (cart[item._id] > 1) {
+                            if (cart[item._id]["qty"] > 1) {
                               setCart({
                                 ...cart,
                                 [item._id]: {
