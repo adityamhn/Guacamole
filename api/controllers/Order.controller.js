@@ -3,30 +3,22 @@ const OrderModel = require("../models/Order.model");
 const RestaurantModel = require("../models/Restaurant.model");
 const jwt = require("jsonwebtoken");
 const ItemModel = require("../models/Item.model");
+const TableModel = require("../models/Table.model");
 
 exports.AddOrder = async (req, res, next) => {
-  const { u_id, r_id, items } = req.body;
-
-  if (!u_id || !r_id)
+  const { t_id, items, cost } = req.body;
+  const uid = res.locals.uid;
+  console.log("uid", uid);
+  console.log("t_id", t_id);
+  if (!uid || !t_id)
     return res.status(500).json({
       success: false,
       message: "Required values not provided!",
     });
 
-  const itemPrices = await ItemModel.find({
-    _id: {
-      $in: items,
-    },
-  });
-
-  var cost = 0;
-  itemPrices.forEach((item) => {
-    cost = cost + item.price * item.qty;
-  });
-
   const newOrder = new OrderModel({
-    u_id,
-    r_id,
+    u_id: uid,
+    t_id,
     items,
     cost,
   });
@@ -34,8 +26,15 @@ exports.AddOrder = async (req, res, next) => {
   newOrder
     .save()
     .then(async (n) => {
-      return res.status(200).json({
-        success: true,
+      TableModel.findByIdAndUpdate(
+        t_id,
+        { $set: { status: "occupied" }, $push: { orders: n._id } },
+        { new: true }
+      ).then((table) => {
+        console.log("table", table);
+        return res.status(200).json({
+          success: true,
+        });
       });
     })
     .catch((err) => {
@@ -48,28 +47,43 @@ exports.AddOrder = async (req, res, next) => {
     });
 };
 
-exports.GetOrderDetails = (req, res, next) => {
-  const { _id } = res.body;
-  if (!_id)
+exports.GetOrderDetails = async (req, res, next) => {
+  const { tableId } = req.params;
+  if (!tableId)
     return res.status(500).json({
       success: false,
       message: "Required values not provided!",
     });
-  return OrderModel.findById({
-    _id,
-  })
-    .then((order) => {
-      return res.status(200).json({
-        success: true,
-        order: order,
-      });
-    })
-    .catch((err) => {
-      console.log("error");
-      console.log(err);
-      return res.status(500).json({
-        success: false,
-        message: "Unknown server error!",
+
+  try {
+    const table = await TableModel.findOne({
+      _id: tableId,
+    }).populate("orders");
+
+    console.log("table", table);
+    const orderIds = table.orders;
+
+    console.log("orderIds", orderIds);
+
+    const orders = await OrderModel.find({
+      _id: { $in: orderIds },
+    });
+
+    orders.forEach((order) => {
+      ItemModel.populate(order, { path: "items" }, (err, order) => {
+        console.log("order", order);
+        res.status(200).json({
+          success: true,
+          order,
+        });
       });
     });
+  } catch (err) {
+    console.log("Error!");
+    console.log(err);
+    return res.status(500).json({
+      success: false,
+      message: "Unknown server error.",
+    });
+  }
 };

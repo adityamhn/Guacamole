@@ -151,7 +151,7 @@ exports.UpdateRestaurantDetails = (req, res, next) => {
 };
 
 exports.GetRestaurantDetails = (req, res, next) => {
-  const { _id } = res.locals;
+  const { _id } = req.body;
   if (!_id)
     return res.status(500).json({
       success: false,

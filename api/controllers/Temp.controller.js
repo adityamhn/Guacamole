@@ -31,10 +31,10 @@ exports.SignUp = async (req, res, next) => {
     .save()
     .then(async (n) => {
       let HASH = process.env.JWT_HASH;
-
+      const userData = n;
       const token = jwt.sign(
         {
-          newUser,
+          userData,
         },
         HASH,
         {
@@ -164,4 +164,26 @@ exports.ConfirmCart = async (req, res, next) => {
         message: "Unknown server error.",
       });
     });
+};
+
+exports.GetTableInfo = async (req, res, next) => {
+  const uid = res.locals.uid;
+  const { tableId } = req.params;
+  if (!uid || !tableId)
+    return res.status(500).json({
+      success: false,
+      message: "Required values not provided!",
+    });
+  const table = await TableModel.findOne({
+    _id: tableId,
+  });
+  if (!table)
+    return res.status(500).json({
+      success: false,
+      message: "Table not found!",
+    });
+  return res.status(200).json({
+    success: true,
+    table: table,
+  });
 };

@@ -1,15 +1,12 @@
-import { Col, Form, Input, InputNumber, Modal, Row, Select } from "antd";
+import { Col, Form, Input, InputNumber, Modal } from "antd";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { countryCodes } from "../../components/data/countryCodes";
 import GButton from "/components/GButton";
 import Styles from "/styles/pages/Home.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../store/user.slice";
 import { SignUpUser } from "../../services/temp.service";
-
-const { Option } = Select;
 
 export default function Home({ restaurantId, tableId }) {
   const { isLoggedIn } = useSelector((state) => state.user);
@@ -31,6 +28,7 @@ export default function Home({ restaurantId, tableId }) {
               isLoggedIn: true,
               user: res.data.user,
               token: res.data.token,
+              tableId,
             })
           );
           router.push(`/${restaurantId}/menu`);

@@ -53,3 +53,12 @@ export const ConfirmCart = () => {
     }
   );
 };
+
+export const GetTableInfo = (tableId) => {
+  const { token } = store.getState().user;
+  return axios.get(`${BACKEND_URL}/api/temp/get-table-info/${tableId}`, {
+    headers: {
+      token,
+    },
+  });
+};

@@ -9,5 +9,6 @@ const router = express.Router();
 
 router.post("/add-order", CheckJWT, AddOrder);
 
-router.post("/get-order-details", CheckJWT, GetOrderDetails);
+router.get("/get-order-details/:tableId", CheckJWT, GetOrderDetails);
+
 module.exports = router;

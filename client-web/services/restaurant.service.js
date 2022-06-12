@@ -1,5 +1,5 @@
 import axios from "axios";
-import store from "../app/store";
+// import store from "../app/store";
 import { BACKEND_URL } from "../constants";
 
 export const GetAllRestaurants = async () => {
@@ -42,11 +42,7 @@ export const CheckSignedIn = () => {
 };
 
 export const GetRestaurantDetails = (_id) => {
-  const { token } = store.getState().auth;
-  if (!token) throw new Error("Token not found!");
-  return axios.get(`${BACKEND_URL}/api/restaurant/get-restaurant-details`, {
-    headers: {
-      token,
-    },
+  return axios.post(`${BACKEND_URL}/api/restaurant/get-restaurant-details`, {
+    _id,
   });
 };

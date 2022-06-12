@@ -1,73 +1,67 @@
 @import "../variables";
 
 .paymentContainer {
-    min-height: 100vh;
-    height: 100%;
-    padding: 0rem 1rem;
-    background: $background;
+  min-height: 100vh;
+  height: 100%;
+  padding: 0rem 1rem;
+  background: $background;
+
+  :global {
+    .ant-page-header {
+      padding-left: 0;
+
+      .ant-page-header-heading-title {
+        color: $white-text;
+      }
+    }
+  }
+
+  .paymentItemsCard {
+    border-radius: 6px;
+    background-color: #2b2b2b;
 
     :global {
-
-        .ant-page-header {
-            padding-left:0;
-
-            .ant-page-header-heading-title {
-                color:$white-text;
-
-            }
-        }
+      .ant-card-body {
+        padding: 1rem 2rem;
+      }
     }
 
-    .paymentItemsCard {
-        border-radius:6px;
-        background-color:#2b2b2b;
+    .paymentItem {
+      margin: 0.4rem 0rem;
 
-        :global {
-
-            .ant-card-body {
-                padding:1rem 2rem;
-            }
-        }
-
-        .paymentItem {
-            margin: .4rem 0rem; 
-
-            .paymentItemTitle{
-                display:flex;
-                align-items:center;
-               
-            }
-            .paymentItemPrice{
-                color:$orange;
-
-            }
-        }
-
-        .divider {
-            background-color:$orange-secondary;
-            opacity: 0.4;
-        }
+      .paymentItemTitle {
+        display: flex;
+        align-items: center;
+        color: $white-text;
+      }
+      .paymentItemPrice {
+        color: $orange;
+      }
     }
 
-    .footerButton {
-        position: fixed;
-        bottom: 18px;
-        width:calc(100% - 2rem);
-        box-shadow: rgba(240, 240, 241, 0.2) 0px 0px 40px 10px;
-        height:3.2rem;
-
-        .buttonText {
-            color: $white-text;
-
-        }
-
-      
+    .divider {
+      background-color: $orange-secondary;
+      opacity: 0.4;
     }
+  }
 
-    .sectionHeading {
-        margin-top: 2rem;
-        font-weight: 500;
-        color:$white-text-secondary;
-        margin-bottom:1rem;
+  .footerButton {
+    position: fixed;
+    bottom: 18px;
+    width: calc(100% - 2rem);
+    box-shadow: rgba(240, 240, 241, 0.2) 0px 0px 40px 10px;
+    height: 3.2rem;
+    color: $white-text;
+
+    .buttonText {
+      color: $white-text;
     }
+  }
+
+  .sectionHeading {
+    margin-top: 2rem;
+    font-weight: 500;
+    color: $white-text-secondary;
+    margin-bottom: 1rem;
+  }
 }

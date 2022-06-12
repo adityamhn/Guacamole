@@ -5,12 +5,13 @@ import Styles from "/styles/components/MenuLayout.module.scss";
 import { BsPlus } from "react-icons/bs";
 import { BiMinus } from "react-icons/bi";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateCart } from "../../store/user.slice";
 
 const MenuList = ({ isLoading, menu }) => {
   const dispatch = useDispatch();
-  const [cart, setCart] = useState({});
+  const { cart: prevCart } = useSelector((state) => state.user);
+  const [cart, setCart] = useState(prevCart);
 
   return (
     <div className={Styles.menuListContainer}>
@@ -51,7 +52,7 @@ const MenuList = ({ isLoading, menu }) => {
                       position: "relative",
                     }}
                   >
-                    {cart[item._id] ? (
+                    {cart && cart[item._id] ? (
                       <div className={Styles.itemPicker}>
                         <BiMinus
                           className={Styles.iconLeft}
@@ -59,12 +60,18 @@ const MenuList = ({ isLoading, menu }) => {
                             if (cart[item._id] > 1) {
                               setCart({
                                 ...cart,
-                                [item._id]: cart[item._id] - 1,
+                                [item._id]: {
+                                  qty: cart[item._id].qty - 1,
+                                  priceperqty: item.price,
+                                },
                               });
                               dispatch(
                                 updateCart({
                                   ...cart,
-                                  [item._id]: cart[item._id] - 1,
+                                  [item._id]: {
+                                    qty: cart[item._id].qty - 1,
+                                    priceperqty: item.price,
+                                  },
                                 })
                               );
                             } else {
@@ -79,18 +86,24 @@ const MenuList = ({ isLoading, menu }) => {
                           }}
                         />
                         <div className={Styles.number}>
-                          {cart[item._id] ? cart[item._id] : 0}
+                          {cart[item._id]["qty"] ? cart[item._id]["qty"] : 0}
                         </div>
                         <BsPlus
                           onClick={() => {
                             setCart({
                               ...cart,
-                              [item._id]: cart[item._id] + 1,
+                              [item._id]: {
+                                qty: cart[item._id].qty + 1,
+                                priceperqty: item.price,
+                              },
                             });
                             dispatch(
                               updateCart({
                                 ...cart,
-                                [item._id]: cart[item._id] + 1,
+                                [item._id]: {
+                                  qty: cart[item._id].qty + 1,
+                                  priceperqty: item.price,
+                                },
                               })
                             );
                           }}
@@ -100,11 +113,20 @@ const MenuList = ({ isLoading, menu }) => {
                     ) : (
                       <GButton
                         onClick={() => {
-                          setCart({ ...cart, [item._id]: 1 });
+                          setCart({
+                            ...cart,
+                            [item._id]: {
+                              qty: 1,
+                              priceperqty: item.price,
+                            },
+                          });
                           dispatch(
                             updateCart({
                               ...cart,
-                              [item._id]: 1,
+                              [item._id]: {
+                                qty: 1,
+                                priceperqty: item.price,
+                              },
                             })
                           );
                         }}

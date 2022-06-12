@@ -5,7 +5,7 @@ const OrderSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
-  r_id: {
+  t_id: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
@@ -17,14 +17,14 @@ const OrderSchema = new mongoose.Schema({
   cost: {
     type: Number,
     required: true,
-  }
+  },
 });
 
 OrderSchema.methods.GetOrderData = async function () {
   const order = this;
   return {
     u_id: order.u_id,
-    r_id: order.r_id,
+    t_id: order.t_id,
     items: order.items,
     cost: order.cost,
   };
