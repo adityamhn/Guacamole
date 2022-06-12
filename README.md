@@ -1,5 +1,5 @@
 <p align="center">
-<img src="./images/logo.jpg" alt="drawing" width=40% margin="120">
+<img src="./images/logo.png" alt="drawing" width=40% margin="120">
 </p>
 Enjoy a hassle free dining experience with our virtual menu and contactless payment.
 
