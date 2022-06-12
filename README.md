@@ -2,16 +2,16 @@
 
 ## Flow for users
 
-- first time:
+- first time:  
         1) login/signup  
-         ) restaraunts near you  
-        2) scan qr  
-        3) presened with menu  
-        4) add to cart  
-        5) button reorder (for ordering agane)  
-        6) when done eating, pay.  
+        2) restaraunts near you  
+        3) scan qr  
+        4) presened with menu  
+        5) add to cart  
+        6) button reorder (for ordering agane)  
+        7) when done eating, pay.  
 
-## flow for rest:  
+## flow for rest:    
 
 - first time:
         1) login/signum  
