@@ -90,6 +90,10 @@ exports.DeleteTable = async (req, res, next) => {
       success: false,
       message: "Table not found!",
     });
+  const restaurant = await RestaurantModel.findById({
+    _id: r_id,
+  });
+
   table
     .delete()
     .then(async () => {
