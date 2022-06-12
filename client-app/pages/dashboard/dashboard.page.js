@@ -1,5 +1,5 @@
 import React from 'react'
-import { View } from 'react-native'
+import { Image, View } from 'react-native'
 import { Avatar } from 'react-native-paper'
 import { SafeArea } from '../../components/SafeArea.component'
 import { WHITE, WHITE_SECONDARY } from '../../constants'
@@ -12,7 +12,8 @@ const DashboardScreen = ({ navigation }) => {
     return (
         <SafeArea out>
             <Container style={{ width: '100%' }}>
-                <View style={{ marginTop: 24, width: "100%", display: "flex", flexDirection: 'row', justifyContent: "flex-end" }}>
+                <View style={{ marginTop: 24, width: "100%", display: "flex", flexDirection: 'row', justifyContent: "space-between",alignItems: "center"}}>
+                    <Image source={require('../../assets/logo.png')} width={24} height={24}/>
                     <Avatar.Image size={32} source={{ uri: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80" }} />
                 </View>
 
