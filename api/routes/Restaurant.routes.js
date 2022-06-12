@@ -21,5 +21,5 @@ router.get("/check-signed-in", CheckJWT, CheckedSignedIn);
 
 router.put("/update-restaurant-details", CheckJWT, UpdateRestaurantDetails);
 
-router.get("/get-restaurant-details", CheckJWT, GetRestaurantDetails);
+router.get("/get-restaurant-details", GetRestaurantDetails);
 module.exports = router;
