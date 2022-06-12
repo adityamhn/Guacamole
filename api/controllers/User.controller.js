@@ -238,7 +238,7 @@ exports.ConfirmCart = async (req, res, next) => {
   const user = await UserModel.findById({
     _id: uid,
   });
-
+  console.log(user);
   table.orders = user.cart;
   user.orders.push(user.cart);
   user.cart = [];
