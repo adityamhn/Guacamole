@@ -29,5 +29,7 @@ Enjoy a hassle free dining experience with our virtual menu and contactless paym
 3. Once you have decided what you want to eat, just click on confirm cart and the restaurant will recieve your order.
 4. After you're done eating, you'll get a payment screen where you'll be presented with the bill, which contains the dishes you ordered and the final amount payable after taxes.
 5. After you make the payment you're set.
-
-video poc:
+6. 
+web - https://vercel.com/adityamhn/guacamol-web,   
+api - https://733d-14-97-167-154.in.ngrok.io,  
+figma - https://www.figma.com/file/nKB9R0Gb2I9fLo8dNQv8kW/Jolteon?node-id=0%3A1 
