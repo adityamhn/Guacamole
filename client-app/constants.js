@@ -6,4 +6,4 @@ export const WHITE = "#F3F3F3";
 export const PRIMARY_FONT = "Dinosaur";
 export const SECONDARY_FONT = "Poppins";
 export const BACKEND_URL =
-  "http://ec2-3-108-235-208.ap-south-1.compute.amazonaws.com:8010";
+  "http://7fa2-14-97-167-154.ngrok.io";

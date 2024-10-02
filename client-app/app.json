@@ -24,7 +24,9 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "versionCode": 2,
+      "package": "com.adityamhn.guacamole"
     },
     "web": {
       "favicon": "./assets/favicon.png"

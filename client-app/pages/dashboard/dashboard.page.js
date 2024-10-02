@@ -20,8 +20,7 @@ const DashboardScreen = ({ navigation }) => {
       <Container style={{ width: "100%" }}>
         <TouchableOpacity
           onPress={async () => {
-            await AsyncStorage.removeItem("token");
-            await AsyncStorage.removeItem("user");
+            await AsyncStorage.clear();
             navigation.navigate("Login");
           }}
         >
